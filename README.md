@@ -1,4 +1,4 @@
-<p>GDACT</p>
+## GDACT
 
 ## Sobre Gdact
 
