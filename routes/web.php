@@ -24,13 +24,15 @@ use App\Http\Controllers\HomeController;
 */
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 // Route::get('/', function () {
 //     return view('painel.painel');
 // })->name('painel');
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // ROTA ADMIN
     Route::get('/painel', function () {
