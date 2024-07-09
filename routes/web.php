@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
 
     // ROTA PARA AVALIAÇÃO
     Route::get('/avaliacaoServidor/{id}', [AvaliacaoServidorController::class, 'carregaAvaliacao'])
+         ->middleware('auth.avaliacao')
          ->name('avaliacao_servidor.avaliacao');
 
     // ROTAS DE COORDENACAO
