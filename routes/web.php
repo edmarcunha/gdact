@@ -24,13 +24,15 @@ use App\Http\Controllers\HomeController;
 */
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 // Route::get('/', function () {
 //     return view('painel.painel');
 // })->name('painel');
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // ROTA ADMIN
     Route::get('/painel', function () {
@@ -39,7 +41,8 @@ Route::middleware(['auth'])->group(function () {
     // ROTA ADMIN
 
     // ROTA PARA AVALIAÇÃO
-    Route::get('/avaliacaoServidor/{id}', [AvaliacaoServidorController::class, 'carregaAvaliacao'])->name('avaliacao_servidor.avaliacao');
+    Route::get('/avaliacaoServidor/{id}', [AvaliacaoServidorController::class, 'carregaAvaliacao'])
+         ->name('avaliacao_servidor.avaliacao');
 
     // ROTAS DE COORDENACAO
     Route::prefix('coordenacoes')->group(function () {

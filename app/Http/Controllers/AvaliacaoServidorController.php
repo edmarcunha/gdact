@@ -10,10 +10,9 @@ use Illuminate\Http\Request;
 
 class AvaliacaoServidorController extends Controller
 {
-    public function getAvaliacoes(Request $request)
+    public function getAvaliacoes(int $id)
     {
-        $avaliadorId = $request->query('id_servidor_avaliador');
-        $avaliacoes = AvaliacaoServidor::where('id_servidor_avaliador', $avaliadorId)->get();
+        $avaliacoes = AvaliacaoServidor::where('id_servidor_avaliador', $id)->get();
 
         return compact('avaliacoes');
     }

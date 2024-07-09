@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\AvaliacaoServidorController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ServidorController;
 
 class HomeController extends Controller
 {
@@ -29,8 +31,13 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $avaliadorId = $request->query('id_servidor_avaliador');
-        $avaliacoes = app(AvaliacaoServidorController::class)->getAvaliacoes($request)['avaliacoes'];
+        $user = Auth::user()->getFirstAttribute('samaccountname');
+        
+        $servidor = ServidorController::getInfoServidor('sfranca');
+        // $servidor = ServidorController::getInfoServidor($user);
+
+        $avaliacoes = app(AvaliacaoServidorController::class)->getAvaliacoes($servidor->id)['avaliacoes'];
+        $avaliadorId = $servidor->id;
 
         return view('home', compact('avaliacoes', 'avaliadorId'));
     }

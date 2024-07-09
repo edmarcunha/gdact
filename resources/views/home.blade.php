@@ -14,8 +14,6 @@
                             </div>
                         @endif
 
-                        {{-- {{ __('You are logged in!') }} --}}
-
                         {{ __('Você tem avaliações por fazer.') }}
 
                         @include('avaliacao_servidor.getAvaliacoes')

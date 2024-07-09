@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use LdapRecord\Container;
+use LdapRecord\Models\ActiveDirectory\User as LdapUser;
+use App\Http\Controllers\HomeController;
 
 class LoginController extends Controller
 {
@@ -47,4 +51,24 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    public function login(Request $request)
+    {
+        $credentials = [
+            'samaccountname' => $request->username,
+            'password' => $request->password,
+        ];
+
+        // Continue com o processo de login do Laravel
+        if (Auth::attempt($credentials)) {
+            // return redirect()->intended('home');
+            return redirect()->action([HomeController::class, 'index']);
+            // return redirect()->action([ServidorController::class, 'home'], ['user' => $request->username]);
+        } else {
+            return redirect()->back()->withErrors(['username' => 'As credenciais não são válidas.']);
+        }
+
+        return redirect()->back()->withErrors(['username' => 'Falha na autenticação LDAP.']);
+    }
+
 }
