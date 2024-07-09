@@ -33,9 +33,13 @@ class HomeController extends Controller
     {
         $user = Auth::user()->getFirstAttribute('samaccountname');
         
-        $servidor = ServidorController::getInfoServidor('sfranca');
-        // $servidor = ServidorController::getInfoServidor($user);
-
+        $servidor = ServidorController::getInfoServidor($user);
+        // $servidor = ServidorController::getInfoServidor('sfranca');
+        if(!$servidor){
+            Auth::logout();
+            return redirect()->route('login')->withErrors(['username' => 'Usuário sem avaliações cadastradas.']);
+        }
+        
         $avaliacoes = app(AvaliacaoServidorController::class)->getAvaliacoes($servidor->id)['avaliacoes'];
         $avaliadorId = $servidor->id;
 
