@@ -32,7 +32,7 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // ROTA ADMIN
     Route::get('/painel', function () {
@@ -41,7 +41,8 @@ Route::middleware(['auth'])->group(function () {
     // ROTA ADMIN
 
     // ROTA PARA AVALIAÇÃO
-    Route::get('/avaliacaoServidor/{id}', [AvaliacaoServidorController::class, 'carregaAvaliacao'])->name('avaliacao_servidor.avaliacao');
+    Route::get('/avaliacaoServidor/{id}', [AvaliacaoServidorController::class, 'carregaAvaliacao'])
+         ->name('avaliacao_servidor.avaliacao');
 
     // ROTAS DE COORDENACAO
     Route::prefix('coordenacoes')->group(function () {
