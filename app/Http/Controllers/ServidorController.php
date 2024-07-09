@@ -82,4 +82,9 @@ class ServidorController extends Controller
         $servidor->delete();
         return redirect()->route('servidores.index');
     }
+
+    public static function getInfoServidor(string $user)
+    {
+        return Servidor::where('login', $user)->first();
+    }
 }

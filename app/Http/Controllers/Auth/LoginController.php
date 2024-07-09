@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use LdapRecord\Container;
 use LdapRecord\Models\ActiveDirectory\User as LdapUser;
+use App\Http\Controllers\HomeController;
 
 class LoginController extends Controller
 {
@@ -60,7 +61,9 @@ class LoginController extends Controller
 
         // Continue com o processo de login do Laravel
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('home');
+            // return redirect()->intended('home');
+            return redirect()->action([HomeController::class, 'index']);
+            // return redirect()->action([ServidorController::class, 'home'], ['user' => $request->username]);
         } else {
             return redirect()->back()->withErrors(['username' => 'As credenciais não são válidas.']);
         }
