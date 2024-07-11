@@ -90,6 +90,9 @@
                 </div>
             </div>
         @endforeach
+        <div>
+            <a href="{{ route('home') }}">Voltar</a>
+        </div>
     </div>
 
 @endsection
