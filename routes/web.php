@@ -99,5 +99,14 @@ Route::middleware(['auth'])->group(function () {
 
     // ROTA PARA NOTA --RESOURCE
     Route::resource('notas', NotaController::class);
+
+    // ROTAS DE PÁGINAS ESTÁTICAS
+    Route::get('/recomendacoes', function () {
+        return view('recomendacoes.index');
+    })->name('recomendacoes.index');
+    
+    Route::get('/instrucoes', function () {
+        return view('instrucoes.index');
+    })->name('instrucoes.index');
     
 });

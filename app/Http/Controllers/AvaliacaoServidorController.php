@@ -14,6 +14,8 @@ class AvaliacaoServidorController extends Controller
     {
         $avaliacoes = AvaliacaoServidor::where('id_servidor_avaliador', $id)->get();
 
+        $avaliacoes = $avaliacoes->groupBy('ano_referencia');
+
         return compact('avaliacoes');
     }
 

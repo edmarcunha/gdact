@@ -99,7 +99,7 @@ class AvaliacaoController extends Controller
         $this->sortearCoordenadores($ano_referencia);
         $this->sortearChefesServico($ano_referencia);
         $this->servidoresComuns($ano_referencia);
-        // FAZER AUTOAVALIAÇÃO
+        $this->gerarAutoAvaliacao($ano_referencia);
 
         return 'Sorteio das avaliações finalizado com sucesso!';
     }
@@ -219,6 +219,20 @@ class AvaliacaoController extends Controller
         // return "Avaliação dos chefes de serviço feita com sucesso!";
     }
 
+    // AUTO AVALIAÇÃO
+    private function gerarAutoAvaliacao($ano_referencia)
+    {
+        $allServidores = Servidor::where('ativo', 1)->get();
+        foreach ($allServidores as $servidor) {
+            $avaliacaoServidor = new AvaliacaoServidor();
+            $avaliacaoServidor->id_servidor_avaliador   = $servidor->id;
+            $avaliacaoServidor->id_servidor_avaliado    = $servidor->id;
+            $avaliacaoServidor->ano_referencia          = $ano_referencia;
+            $avaliacaoServidor->peso                    = 0.15;
+            $avaliacaoServidor->save();
+        }
+    }
+
     public function servidoresComuns($ano_referencia)
     {
         $allServidores = Servidor::where('ativo',1)->get();
@@ -291,7 +305,7 @@ class AvaliacaoController extends Controller
 
     public function todosServidores()
     {
-        return Servidor::whereNotIn('id', [1,2])->get(); // IGNORA OS IDS 1 E 2
+        return Servidor::where('ativo', 1)->whereNotIn('id', [1,2])->get(); // IGNORA OS IDS 1 E 2
     }
 
     public function listarCoordenacoesComChefes()

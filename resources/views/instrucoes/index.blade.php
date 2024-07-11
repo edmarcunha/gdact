@@ -1,0 +1,20 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <h2>Instruções</h2>
+        <div class="card">
+            <div class="card-body">
+                <p>1. Antes de iniciar a avaliação, leia com atenção às especificações de cada fator e todos os quesitos.</p>
+                <p>2. Atribua de um (1) a cinco (5) para cada fator avaliado, num total possível de cento e vinte e cinco (125) pontos, conforme abaixo:</p>
+                <ul>
+                    <li>1 - Não atendeu a expectativa</li>
+                    <li>2 - Atendeu a menos de 50% da expectativa</li>
+                    <li>3 - Atendeu a mais de 50% da expectativa</li>
+                    <li>4 - Atendeu a expectativa</li>
+                    <li>5 - Superou a expectativa</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+@endsection
