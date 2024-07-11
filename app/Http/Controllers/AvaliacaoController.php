@@ -219,6 +219,7 @@ class AvaliacaoController extends Controller
         // return "Avaliação dos chefes de serviço feita com sucesso!";
     }
 
+    // AUTO AVALIAÇÃO
     private function gerarAutoAvaliacao($ano_referencia)
     {
         $allServidores = Servidor::where('ativo', 1)->get();
