@@ -12,7 +12,7 @@
 
     <p>Você está avaliando o servidor: {{ $dados_avaliacao->avaliado->nome }}</p>
     <p>Período de avaliação: {{ $dados_avaliacao->ano_referencia }}</p>
-    <p>Id avaliação: {{ $dados_avaliacao->id }}</p>
+    <!-- <p>Id avaliação: {{ $dados_avaliacao->id }}</p> -->
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -91,7 +91,7 @@
             </div>
         @endforeach
         <div>
-            <a href="{{ route('home') }}">Voltar</a>
+            <a class="btn btn-primary" href="{{ route('home') }}">Voltar</a>
         </div>
     </div>
 
