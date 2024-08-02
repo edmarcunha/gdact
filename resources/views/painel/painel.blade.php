@@ -11,5 +11,6 @@
         <li class="list-group-item"><a href="{{ route('perguntas.index') }}">Gerenciar Perguntas</a></li>
         <li class="list-group-item"><a href="{{ route('competencias.index') }}">Gerenciar Competências</a></li>
         <li class="list-group-item"><a href="{{ route('notas.index') }}">Gerenciar Notas</a></li>
+        <li class="list-group-item"><a href="#">Relatórios</a></li>
     </ul>
 @endsection
